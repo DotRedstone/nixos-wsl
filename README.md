@@ -1,4 +1,4 @@
-# NixOS-WSL Starter
+# NixOS-WSL
 
 面向开发者的极简、模块化 **NixOS-WSL** 环境模板：预配置多语言开发工具链、`herdr` 多 Agent 终端运行时（`harness/`）、`nh` 维护工具、Remote-WSL 兼容层（`nix-ld`）与国内镜像源。
 
@@ -13,6 +13,7 @@
 │   ├── wsl.nix        # NixOS-WSL 基线、默认用户、interop 与可选 Docker/GPU
 │   ├── nix.nix        # Flakes、国内镜像源、nh（NH_FLAKE + 自动清理）与 GC
 │   ├── nix-ld.nix     # programs.nix-ld + 动态运行库（VS Code/Cursor Remote-WSL）
+│   ├── sshd.nix       # OpenSSH 服务（监听 22 与 520 端口）
 │   └── locale.nix     # UTF-8 Locale 与时区
 └── home/
     ├── default.nix    # 用户总开关
@@ -28,8 +29,8 @@
 在已安装 Nix（启用 Flakes）的 `x86_64-linux` 机器上拉取仓库、按需修改 [profiles.nix](./profiles.nix) 后即可直接构建：
 
 ```bash
-git clone https://github.com/DotRedstone/nixos-wsl-starter.git
-cd nixos-wsl-starter
+git clone https://github.com/DotRedstone/nixos-wsl.git
+cd nixos-wsl
 
 # 可选：按需调整 profiles.nix 中的 username、gitName、gitEmail、enableDocker、enableCudaDriver
 $EDITOR profiles.nix
@@ -63,11 +64,11 @@ wsl -d NixOS
 
 ### 2. 日常更新与维护（WSL 内）
 
-先将本仓库复制到 `~/nixos-wsl-starter`，按需修改 [profiles.nix](./profiles.nix) 后执行：
+先将本仓库复制到 `~/nixos-wsl`，按需修改 [profiles.nix](./profiles.nix) 后执行：
 
 ```bash
 # 使用 nh 应用系统与 Home Manager 配置（内置别名 nrs）
-nh os switch ~/nixos-wsl-starter -H wsl
+nh os switch ~/nixos-wsl -H wsl
 
 # 清理旧一代与 Nix store
 nh clean all --keep 3

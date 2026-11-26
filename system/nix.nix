@@ -24,7 +24,7 @@
   # 统一的系统更新与旧代清理前端
   programs.nh = {
     enable = true;
-    flake = "/home/${profile.username}/nixos-wsl-starter";
+    flake = "/home/${profile.username}/nixos-wsl";
     clean = {
       enable = true;
       extraArgs = "--keep-since 7d --keep 3";

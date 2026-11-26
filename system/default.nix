@@ -10,5 +10,6 @@
     ./nix.nix
     ./nix-ld.nix
     ./locale.nix
+    ./sshd.nix
   ];
 }
