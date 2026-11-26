@@ -1,0 +1,5 @@
+result
+result-*
+*.wsl
+*.tar.gz
+.direnv/
